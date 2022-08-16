@@ -1,0 +1,11 @@
+framework module UnitelSDK {
+  umbrella header "UnitelSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module UnitelSDK.Swift {
+    header "UnitelSDK-Swift.h"
+    requires objc
+}

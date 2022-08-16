@@ -1,0 +1,138 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.6 (swiftlang-5.6.0.323.62 clang-1316.0.20.8)
+// swift-module-flags: -target armv7-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name UnitelSDK
+import Alamofire
+import AuthenticationServices
+import Contacts
+import CoreLocation
+import Foundation
+import JGProgressHUD
+import ObjectMapper
+import ObjectiveC
+import QuartzCore
+import ReactorKit
+import RxAlamofire
+import RxCocoa
+import RxSwift
+import SafariServices
+import Swift
+import SwiftyJSON
+import SwiftyXMLParser
+import UIKit
+@_exported import UnitelSDK
+import WebKit
+import _Concurrency
+extension Swift.String : Alamofire.ParameterEncoding {
+  public func encode(_ urlRequest: Alamofire.URLRequestConvertible, with parameters: Alamofire.Parameters?) throws -> Foundation.URLRequest
+}
+extension UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public func makeToast(_ message: Swift.String?, duration: Foundation.TimeInterval = ToastManager.shared.duration, position: UnitelSDK.ToastPosition = ToastManager.shared.position, title: Swift.String? = nil, image: UIKit.UIImage? = nil, style: UnitelSDK.ToastStyle = ToastManager.shared.style, completion: ((_ didTap: Swift.Bool) -> Swift.Void)? = nil)
+  @_Concurrency.MainActor(unsafe) public func makeToast(_ message: Swift.String?, duration: Foundation.TimeInterval = ToastManager.shared.duration, point: CoreGraphics.CGPoint, title: Swift.String?, image: UIKit.UIImage?, style: UnitelSDK.ToastStyle = ToastManager.shared.style, completion: ((_ didTap: Swift.Bool) -> Swift.Void)?)
+  @_Concurrency.MainActor(unsafe) public func showToast(_ toast: UIKit.UIView, duration: Foundation.TimeInterval = ToastManager.shared.duration, position: UnitelSDK.ToastPosition = ToastManager.shared.position, completion: ((_ didTap: Swift.Bool) -> Swift.Void)? = nil)
+  @_Concurrency.MainActor(unsafe) public func showToast(_ toast: UIKit.UIView, duration: Foundation.TimeInterval = ToastManager.shared.duration, point: CoreGraphics.CGPoint, completion: ((_ didTap: Swift.Bool) -> Swift.Void)? = nil)
+  @_Concurrency.MainActor(unsafe) public func hideToast()
+  @_Concurrency.MainActor(unsafe) public func hideToast(_ toast: UIKit.UIView)
+  @_Concurrency.MainActor(unsafe) public func hideAllToasts(includeActivity: Swift.Bool = false, clearQueue: Swift.Bool = true)
+  @_Concurrency.MainActor(unsafe) public func clearToastQueue()
+  @_Concurrency.MainActor(unsafe) public func makeToastActivity(_ position: UnitelSDK.ToastPosition)
+  @_Concurrency.MainActor(unsafe) public func makeToastActivity(_ point: CoreGraphics.CGPoint)
+  @_Concurrency.MainActor(unsafe) public func hideToastActivity()
+  @_Concurrency.MainActor(unsafe) public func toastViewForMessage(_ message: Swift.String?, title: Swift.String?, image: UIKit.UIImage?, style: UnitelSDK.ToastStyle) throws -> UIKit.UIView
+}
+public struct ToastStyle {
+  public init()
+  public var backgroundColor: UIKit.UIColor
+  public var titleColor: UIKit.UIColor
+  public var messageColor: UIKit.UIColor
+  public var maxWidthPercentage: CoreGraphics.CGFloat {
+    get
+    set
+  }
+  public var maxHeightPercentage: CoreGraphics.CGFloat {
+    get
+    set
+  }
+  public var horizontalPadding: CoreGraphics.CGFloat
+  public var verticalPadding: CoreGraphics.CGFloat
+  public var cornerRadius: CoreGraphics.CGFloat
+  public var titleFont: UIKit.UIFont
+  public var messageFont: UIKit.UIFont
+  public var titleAlignment: UIKit.NSTextAlignment
+  public var messageAlignment: UIKit.NSTextAlignment
+  public var titleNumberOfLines: Swift.Int
+  public var messageNumberOfLines: Swift.Int
+  public var displayShadow: Swift.Bool
+  public var shadowColor: UIKit.UIColor
+  public var shadowOpacity: Swift.Float {
+    get
+    set
+  }
+  public var shadowRadius: CoreGraphics.CGFloat
+  public var shadowOffset: CoreGraphics.CGSize
+  public var imageSize: CoreGraphics.CGSize
+  public var activitySize: CoreGraphics.CGSize
+  public var fadeDuration: Swift.Double
+  public var activityIndicatorColor: UIKit.UIColor
+  public var activityBackgroundColor: UIKit.UIColor
+}
+@_hasMissingDesignatedInitializers public class ToastManager {
+  public static let shared: UnitelSDK.ToastManager
+  public var style: UnitelSDK.ToastStyle
+  public var isTapToDismissEnabled: Swift.Bool
+  public var isQueueEnabled: Swift.Bool
+  public var duration: Swift.Double
+  public var position: UnitelSDK.ToastPosition
+  @objc deinit
+}
+public enum ToastPosition {
+  case top
+  case center
+  case bottom
+  public static func == (a: UnitelSDK.ToastPosition, b: UnitelSDK.ToastPosition) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum ApiErrorCode : Swift.Int {
+  case ok
+  case parseError
+  case serviceError
+  case dataNullError
+  case unknownError
+  case phoneExistError
+  case usernameExistError
+  case lockAccount
+  case otherLockAccount
+  case otpInvalid
+  case unAuthentication
+  case accountNotExist
+  case passwordNotSameOldpassword
+  case badRequest
+  case emailRegisterExist
+  case accountLockedOrNotActive
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class UnitelSDKLoginResult : ObjectiveC.NSObject {
+  @objc public var token: Swift.String
+  @objc public var code: Swift.String
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class UnitelLoginSDK : ObjectiveC.NSObject {
+  @objc public static let shared: UnitelSDK.UnitelLoginSDK
+  @objc public var loginCompletion: ((UnitelSDK.UnitelSDKLoginResult) -> Swift.Void)?
+  public var controller: UIKit.UIViewController
+  @objc public func callbackHandle(url: Foundation.URL)
+  @objc public func setScheme(_ scheme: Swift.String)
+  @objc public func signIn(presentViewController controller: UIKit.UIViewController)
+  @objc deinit
+}
+extension UnitelSDK.ToastPosition : Swift.Equatable {}
+extension UnitelSDK.ToastPosition : Swift.Hashable {}
+extension UnitelSDK.ApiErrorCode : Swift.Equatable {}
+extension UnitelSDK.ApiErrorCode : Swift.Hashable {}
+extension UnitelSDK.ApiErrorCode : Swift.RawRepresentable {}
